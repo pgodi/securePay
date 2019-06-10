@@ -20,7 +20,7 @@ public class BaseDriverClass
 	public void startBrowser() {
 		Properties prop = new Properties();
 		try {
-			InputStream input = new FileInputStream("/Users/deeps/eclipse-workspace/com.org.securepay/src/main/java/SecurePayTest/config/configuration.properties");
+			InputStream input = new FileInputStream("./src/main/java/SecurePayTest/config/configuration.properties");
 			prop.load(input);
 		} 
 		catch (Exception e) {
@@ -28,11 +28,11 @@ public class BaseDriverClass
 		}
 
 		if(prop.getProperty("browser").equals("chrome")) {
-			System.setProperty("webdriver.chrome.driver", "/Users/deeps/eclipse-workspace/com.org.securepay/lib/drivers/chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver", "./lib/drivers/chromedriver.exe");
 			driver = new ChromeDriver();
 		}
 		else if (prop.getProperty("browser").equals("firefox")) {
-			System.setProperty("webdriver.gecko.driver", "/Users/deeps/eclipse-workspace/com.org.securepay/lib/drivers/geckodriver.exe");
+			System.setProperty("webdriver.gecko.driver", "./lib/drivers/geckodriver.exe");
 			driver = new FirefoxDriver();
 		}
 		driver.manage().window().maximize();
