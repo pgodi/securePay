@@ -25,7 +25,10 @@ public class SecurePayContactUsTest extends BaseDriverClass{
 
 		new SecurePayHomePO()
 		.assertHomePage()
-		.clickConatctUs();
+		// Click "Contact Us" link from "Support" menu
+		.clickSupportConatctUs();
+		// Click "Contact Us" link at the bottom by scrolling down.
+		//.clickConatctUs();
 
 		new ContactUsPO()
 		.enterFirstName()

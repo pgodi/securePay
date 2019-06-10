@@ -1,10 +1,11 @@
 package SecurePayTest.securePayPO;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.devskiller.jfairy.Fairy;
 import com.devskiller.jfairy.producer.person.Person;
@@ -13,7 +14,7 @@ import SecurePayTest.utilities.BaseDriverClass;
 
 public class ContactUsPO extends BaseDriverClass{
 
-	WebDriver driver = this.getDriver();
+	WebDriverWait wait = new WebDriverWait(driver, 30);
 
 	Fairy fairy = Fairy.create();
 	Person person = fairy.person();
@@ -47,6 +48,7 @@ public class ContactUsPO extends BaseDriverClass{
 
 	// All the actions/methods in CONTACT US page.
 	public ContactUsPO enterFirstName() {
+		wait.until(ExpectedConditions.visibilityOf(firstName));
 		firstName.clear();
 		firstName.sendKeys(person.getFirstName());
 		return this;

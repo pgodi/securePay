@@ -1,7 +1,6 @@
 package SecurePayTest.securePayPO;
 
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -12,9 +11,8 @@ import SecurePayTest.utilities.BaseDriverClass;
 
 public class GooglePO extends BaseDriverClass {
 	
-	WebDriver driver = this.getDriver();
-	WebDriverWait wait=new WebDriverWait(driver, 20);
-	
+	WebDriverWait wait = new WebDriverWait(driver, 30);
+
 	// Declare all the web elements of GOOGLE SEARCH page.
 	@FindBy(css = "div.a4bIc input[name='q']")
 	private WebElement googleSearchInput;

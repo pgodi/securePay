@@ -3,23 +3,31 @@ package SecurePayTest.securePayPO;
 import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import SecurePayTest.utilities.BaseDriverClass;
 
 public class SecurePayHomePO extends BaseDriverClass{
 
-	WebDriver driver = this.getDriver();
-	WebDriverWait wait=new WebDriverWait(driver, 20);
+	WebDriverWait wait = new WebDriverWait(driver, 30);
+	Actions builder = new Actions(driver);
+	
 	public static final String TITLE = "SecurePay online payment and eCommerce solutions for businesses";
 
 	// Declare all the web elements of SECUREPAY Home page.
 	@FindBy(xpath = "//ul[@class='menu']/li/a[text()='Contact Us']")
 	private WebElement contactUs;
+	
+	@FindBy(xpath = "//ul[@id='nav']//a[text()='Support']")
+	private WebElement supportLink;
+	
+	@FindBy(xpath = "//ul[@id='nav']//a[text()='Contact Us']")
+	private WebElement menuContactUs;
 
 	// Constructor to initialize web elements
 	public SecurePayHomePO() {
@@ -38,6 +46,14 @@ public class SecurePayHomePO extends BaseDriverClass{
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		jse.executeScript("arguments[0].scrollIntoView(false)", contactUs);
 		contactUs.click();
+		return this;
+	}
+	
+	// Method to click on Contact Us link from Support dropdown.
+	public SecurePayHomePO clickSupportConatctUs() {
+		wait.until(ExpectedConditions.visibilityOf(supportLink));
+		builder.moveToElement(supportLink).build().perform();
+		builder.moveToElement(menuContactUs).click().build().perform();
 		return this;
 	}
 }
